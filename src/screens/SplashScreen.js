@@ -3,17 +3,22 @@ import React, { useEffect } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { heightPercentageToDP as hp, widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
+import { useNavigation } from '@react-navigation/native'
 
 export default function SplashScreen() {
 
   const ring1Padding = useSharedValue(0);
   const ring2Padding = useSharedValue(0);
 
+  const navigation  = useNavigation()
+
   useEffect(() => {
     ring1Padding.value = 0;
     ring2Padding.value = 0;
     setTimeout(() =>  ring1Padding.value = withSpring(ring1Padding.value+hp(7)), 100);
-    setTimeout(() =>  ring2Padding.value = withSpring(ring2Padding.value+hp(7.5)), 400);
+    setTimeout(() =>  ring2Padding.value = withSpring(ring2Padding.value+hp(7.5)), 300);
+
+    setTimeout(() => navigation.navigate('Home'), 2000)
   },[])
 
   return (
